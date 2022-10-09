@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" ,initial-scale-1.0 />
+
+    <meta charset='utf-8' />
+    <title>Assignment - Week 3</title>
+    <link rel="stylesheet" type="text/css" href="week3.css">
+
+
+</head>
+
+<body>
+
+    <div class="top">
+        <div class="left">My Website</div>
+        <div class="desktop-menu">
+            <div class="item">Item 1 </div>
+            <div class="item">Item 2 </div>
+            <div class="item">Item 3 </div>
+            <div class="item">Item 4 </div>
+        </div>
+        <div class="mobile-menu">
+            <img src="burger_line.png" width='30' height='30' />
+        </div>
+    </div>
+    <div class="welcome">
+        <div class="headline">Welcome to MyHome</div>
+    </div>
+    <div class="space"></div>
+    <div class="pic">
+        <div class="name">
+            <div class="namepic">
+                <img class="nameimg" src="mon.png" alt="mountain" width='80' height='50' />
+                <div class="promotion">Promotion 1</div>
+            </div>
+            <div class="namepic">
+                <img class="nameimg" src="mon.png" alt="mountain" />
+                <div class="promotion">Promotion 2</div>
+            </div>
+        </div>
+    </div>
+    <div class="pic">
+        <div class="list">
+            <div class="titlepic">
+                <img class="titleimg" src="mon.png" alt="mountain" />
+                <div class="title">Title 1</div>
+            </div>
+            <div class="titlepic">
+                <img class="titleimg" src="mon.png" alt="mountain" />
+                <div class="title">Title 2</div>
+            </div>
+            <div class="titlepic">
+                <img class="titleimg" src="mon.png" alt="mountain" />
+                <div class="title">Title 3</div>
+            </div>
+            <div class="titlepic">
+                <img class="titleimg" src="mon.png" alt="mountain" />
+                <div class="title">Title 4</div>
+            </div>
+        </div>
+    </div>
+    <div class="pic">
+        <div class="list">
+            <div class="titlepic">
+                <img class="titleimg" src="mon.png" alt="mountain" />
+                <div class="title">Title 5</div>
+            </div>
+            <div class="titlepic">
+                <img class="titleimg" src="mon.png" alt="mountain" />
+                <div class="title">Title 6</div>
+            </div>
+            <div class="titlepic">
+                <img class="titleimg" src="mon.png" alt="mountain" />
+                <div class="title">Title 7</div>
+            </div>
+            <div class="titlepic">
+                <img class="titleimg" src="mon.png" alt="mountain" />
+                <div class="title">Title 8</div>
+            </div>
+        </div>
+    </div>
+    <script>
+        //利用fetch進行連線並取得資料
+        fetch('https://padax.github.io/taipei-day-trip-resources/taipei-attractions-assignment.json')
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                console.log('Success:', data);
+                let el = document.querySelectorAll(".promotion");
+                let ellen = el.length;
+                console.log(ellen)
+                let newarrTitle = data.result.results;
+                for (let i = 0; i < ellen; i++) {
+                    //透過document.createElement() 可建立新元素：
+                    let newDiv = document.createElement('div');
+                    //可建立新文字節點
+                    let newNode = el[i].textContent;
+                    newNode = newDiv.appendChild(document.createTextNode(newarrTitle[i].stitle));
+                    console.log(newNode);
+                    newDiv.appendChild(newNode);
+                    el.appendChild(newDiv);
+                }
+            })
+
+    </script>
+</body>
+
+</html>
