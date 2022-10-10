@@ -89,19 +89,22 @@
             })
             .then(function (data) {
                 console.log('Success:', data);
-                let el = document.querySelectorAll(".promotion");
+               let el = document.querySelectorAll(".promotion");
                 let ellen = el.length;
                 console.log(ellen)
                 let newarrTitle = data.result.results;
                 for (let i = 0; i < ellen; i++) {
                     //透過document.createElement() 可建立新元素：
+                    let removeNode = document.querySelectorAll('.promotion')[i];
+                    console.log(removeNode)
                     let newDiv = document.createElement('div');
                     //可建立新文字節點
-                    let newNode = el[i].textContent;
-                    newNode = newDiv.appendChild(document.createTextNode(newarrTitle[i].stitle));
+                    let newNode = document.createTextNode(newarrTitle[i].stitle)
                     console.log(newNode);
+
+                    document.querySelector('.namepic').removeChild(removeNode);
                     newDiv.appendChild(newNode);
-                    document.querySelector('.promotion').appendChild(newDiv);
+                    document.querySelector('.namepic').appendChild(newDiv);
                 }
             })
 
