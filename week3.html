@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width" ,initial-scale-1.0 />
+
+        <meta charset='utf-8' />
+        <title>Assignment - Week 3</title>
+        <link rel='stylesheet' href='week3.css' />
+
+
+    </head>
+
+    <body>
+
+        <div class="top">
+            <div class="left">My Website</div>
+            <div class="desktop-menu">
+                <div class="item">Item 1 </div>
+                <div class="item">Item 2 </div>
+                <div class="item">Item 3 </div>
+                <div class="item">Item 4 </div>
+            </div>
+            <div class="mobile-menu">
+                <img src="burger_line.png" width='30' height='30' />
+            </div>
+        </div>
+        <div class="welcome">
+            <div class="headline">Welcome to MyHome</div>
+        </div>
+        <div class="space"></div>
+        <div class="pic">
+            <div class="name" id="twoPic">
+            </div>
+        </div>
+        <div class="pic" id="content">
+            <div class="list" id="listpic1">
+            </div>
+        </div>
+        <div class="pic" id="content">
+            <div class="list" id="listpic2">
+            </div>
+        </div>
+
+        <script>
+            let nameImg = " "
+            //利用fetch進行連線並取得資料
+            fetch("https://padax.github.io/taipei-day-trip-resources/taipei-attractions-assignment.json")
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (data) {
+                    console.log('Success:', data);
+                    let resultsArr = data.result.results;
+
+                    for (let i = 0; i < 2; i++) {
+                        const firstUrl = resultsArr[i].file.split("https");
+                        nameImg = "https" + firstUrl[1];
+                    
+                        const title = resultsArr[i].stitle;
+                        promotionName = resultsArr[i].stitle;
+                        newNameImg(nameImg,promotionName);
+                    }
+                })
+
+
+            let listImg1 = " "
+            //利用fetch進行連線並取得資料
+            fetch("https://padax.github.io/taipei-day-trip-resources/taipei-attractions-assignment.json")
+                .then(function (response) {
+                    return response.json();//解析成一個json 物件
+                })
+                .then(function (data) {
+                    let resultsArr = data.result.results;
+
+                    for (let i = 2; i < 6; i++) {
+                        const firstUrl = resultsArr[i].file.split("https");
+                        listImg1 = "https" + firstUrl[1];
+                        
+                        const title = resultsArr[i].stitle;
+                        listName = resultsArr[i].stitle;
+                        newListImg1(listImg1,listName);
+                    }
+                })
+
+
+            let listImg2 = ""
+            //利用fetch進行連線並取得資料
+            fetch("https://padax.github.io/taipei-day-trip-resources/taipei-attractions-assignment.json")
+                .then(function (response) {
+                    return response.json();//解析成一個json 物件
+                })
+                .then(function (data) {
+                    let resultsArr = data.result.results;
+
+                    for (let i = 6; i < 10; i++) {
+                        const firstUrl = resultsArr[i].file.split("https");
+                        listImg2 = "https"+ firstUrl[1];
+
+                        const title = resultsArr[i].stitle;
+                        listName = resultsArr[i].stitle;
+                        newListImg2(listImg2,listName);
+                    }
+                })
+            
+
+            function newNameImg() {
+                console.log(nameImg,promotionName)
+
+                let namepicDiv = document.createElement("div");
+                namepicDiv.classList.add("namepic");
+                let promotionDiv = document.createElement("div");
+                promotionDiv.classList.add("promotion");
+
+                let viewpoint = document.createElement("img");
+                viewpoint.classList.add("nameimg");
+                viewpoint.setAttribute("src", nameImg);
+                viewpoint.setAttribute("alt", "testImg");
+
+                const twoPic = document.getElementById("twoPic")
+
+                twoPic.appendChild(namepicDiv).appendChild(viewpoint);
+                twoPic.appendChild(namepicDiv).appendChild(promotionDiv);
+                var newtext = document.createTextNode(promotionName);
+                promotionDiv.appendChild(newtext);
+
+            };
+               
+
+            function newListImg1() {
+                console.log(listImg1,listName)
+
+
+                let titlepicDiv = document.createElement('div');
+                titlepicDiv.classList.add("titlepic");
+                let titleDiv = document.createElement('div');
+                titleDiv.classList.add("title");
+
+                let titleimgpoint = document.createElement("img");
+                titleimgpoint.classList.add("titleimg");
+                titleimgpoint.setAttribute("src", listImg1);
+                titleimgpoint.setAttribute("alt", "testImg");
+
+                const listpic1 = document.getElementById('listpic1');
+
+
+                listpic1.appendChild(titlepicDiv).appendChild(titleimgpoint);
+                listpic1.appendChild(titlepicDiv).appendChild(titleDiv);
+                var newtext = document.createTextNode(listName);
+                titleDiv.appendChild(newtext);
+            };
+
+            function newListImg2() {
+                console.log(listImg2,listName)
+
+                let titlepicDiv = document.createElement('div');
+                titlepicDiv.classList.add("titlepic");
+                let titleDiv = document.createElement('div');
+                titleDiv.classList.add("title");
+
+                let titleimgpoint = document.createElement("img");
+                titleimgpoint.classList.add("titleimg");
+                titleimgpoint.setAttribute("src", listImg2);
+                titleimgpoint.setAttribute("alt", "testImg");
+
+                const listpic2 = document.getElementById('listpic2')
+
+                listpic2.appendChild(titlepicDiv).appendChild(titleimgpoint);
+                listpic2.appendChild(titlepicDiv).appendChild(titleDiv);
+                var newtext = document.createTextNode(listName);
+                titleDiv.appendChild(newtext);
+            };
+
+        </script>
+    </body>
+</html>

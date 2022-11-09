@@ -114,6 +114,7 @@ body {
 
 .titleimg {
     justify-content: center;
+    aspect-ratio: 16 / 9;
     width: 280px;
     height: 150px;
     margin: 0px;
@@ -126,6 +127,7 @@ body {
     background-color: lightblue;
     line-height: 50px;
 }
+
 
 @media(max-width:1200px) {
     .name {
