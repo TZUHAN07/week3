@@ -42,7 +42,9 @@
         </div>
 
         <script>
-            let nameImg = " "
+            let nameImg = " ";
+            let listImg1 = " ";
+            let listImg2 = " ";
             //利用fetch進行連線並取得資料
             fetch("https://padax.github.io/taipei-day-trip-resources/taipei-attractions-assignment.json")
                 .then(function (response) {
@@ -60,18 +62,6 @@
                         promotionName = resultsArr[i].stitle;
                         newNameImg(nameImg,promotionName);
                     }
-                })
-
-
-            let listImg1 = " "
-            //利用fetch進行連線並取得資料
-            fetch("https://padax.github.io/taipei-day-trip-resources/taipei-attractions-assignment.json")
-                .then(function (response) {
-                    return response.json();//解析成一個json 物件
-                })
-                .then(function (data) {
-                    let resultsArr = data.result.results;
-
                     for (let i = 2; i < 6; i++) {
                         const firstUrl = resultsArr[i].file.split("https");
                         listImg1 = "https" + firstUrl[1];
@@ -80,17 +70,6 @@
                         listName = resultsArr[i].stitle;
                         newListImg1(listImg1,listName);
                     }
-                })
-
-
-            let listImg2 = ""
-            //利用fetch進行連線並取得資料
-            fetch("https://padax.github.io/taipei-day-trip-resources/taipei-attractions-assignment.json")
-                .then(function (response) {
-                    return response.json();//解析成一個json 物件
-                })
-                .then(function (data) {
-                    let resultsArr = data.result.results;
 
                     for (let i = 6; i < 10; i++) {
                         const firstUrl = resultsArr[i].file.split("https");
@@ -101,7 +80,6 @@
                         newListImg2(listImg2,listName);
                     }
                 })
-            
 
             function newNameImg() {
                 console.log(nameImg,promotionName)
@@ -128,7 +106,6 @@
 
             function newListImg1() {
                 console.log(listImg1,listName)
-
 
                 let titlepicDiv = document.createElement('div');
                 titlepicDiv.classList.add("titlepic");
